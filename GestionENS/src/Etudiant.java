@@ -80,5 +80,4 @@ public class Etudiant {
 			return -2;
 		}
 	}
-	//Demander l'attestation...
 }

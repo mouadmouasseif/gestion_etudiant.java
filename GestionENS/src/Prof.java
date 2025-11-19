@@ -1,61 +1,69 @@
 import java.util.ArrayList;
 
 public class Prof extends Personnels {
-	Departement departement;
-	private ArrayList<String> matiere;
+    private Departement departement;
+    private ArrayList<String> matiere;
 
-	public Prof(String nom, double salary, Departement departement ,ArrayList<String> matiere ) {
-		super(nom, salary);
-		this.departement = departement;
-		this.matiere = matiere;
-	}
-	
-	public Prof(String nom, Departement departement ,ArrayList<String> matiere ) {
-		super(nom);
-		this.matiere = matiere;
-		this.departement = departement;
-	}
-	
-	public Prof(String nom ,ArrayList<String> matiere ) {
-		super(nom);
-		this.matiere = matiere;
-	}
-	
-	public void setMatiere( ArrayList<String> matiere ) {
-		this.matiere = matiere;
-	}
+    public Prof(String nom, double salary, Departement departement, ArrayList<String> matiere) {
+        super(nom, salary);
+        this.departement = departement;
+        this.matiere = matiere;
+    }
 
-	public void setDepartement(Departement departement) {
-		this.departement = departement;
-	}
-	
-	public Departement getDepartement() {
-		return departement;
-	}
-	
-	public ArrayList<String> getMatiere() {
-		return matiere;
-	}
-	
-	public String toString() {
-		String str = "Le professeur M."+getNom();
-		if (departement != null) {
-			 str = "Le professeur M."+getNom()+" est appartiant au departement de "+departement.getNom();
-		}
-		str = str+"\n\tIl est un salaire de "+getSalary()+"MAD,";
-		if ( matiere != null) {
-			String strMatiere = String.join(", ", matiere);
-			strMatiere = "et il enseigner "+strMatiere;
-			str = str+strMatiere;
-		}
-		return str;
-	}
-	
-	public void teach(ArrayList<Etudiant> etudiants) {
-		System.out.println(this.getNom()+" is teaching "+etudiants.get(0)+" class");
-	}
-	
-	public void sendNotes(PersonnelsAdmin admin) {
-		System.out.println(this.getNom()+" sent note into "+admin.getNom());
-	}
+    public Prof(String nom, Departement departement, ArrayList<String> matiere) {
+        super(nom);
+        this.departement = departement;
+        this.matiere = matiere;
+    }
+
+    public Prof(String nom, ArrayList<String> matiere) {
+        super(nom);
+        this.matiere = matiere;
+    }
+
+    public void setMatiere(ArrayList<String> matiere) {
+        this.matiere = matiere;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
+    }
+
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public ArrayList<String> getMatieres() {
+        return matiere;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder("Le professeur M. " + getNom());
+
+        if (departement != null) {
+            str.append(" appartient au département de ").append(departement.getNom());
+        }
+
+        str.append("\n\tIl a un salaire de ").append(getSalary()).append(" MAD");
+
+        if (matiere != null && !matiere.isEmpty()) {
+            String strMatiere = String.join(", ", matiere);
+            str.append(", et il enseigne : ").append(strMatiere);
+        }
+
+        return str.toString();
+    }
+
+    public void teach(ArrayList<Etudiant> etudiants) {
+        if (etudiants == null || etudiants.isEmpty()) {
+            System.out.println(getNom() + " n'a aucun étudiant à enseigner.");
+        } else {
+            System.out.println(getNom() + " enseigne à la classe de " + etudiants.get(0).getNom() + " et ses camarades.");
+        }
+    }
+
+    public void sendNotes(PersonnelsAdmin admin) {
+        System.out.println(getNom() + " a envoyé les notes à " + admin.getNom() + ".");
+    }
 }

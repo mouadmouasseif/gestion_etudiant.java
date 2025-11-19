@@ -1,130 +1,140 @@
 import java.util.ArrayList;
 
 public class Departement {
-	public String nom;
-	public String chefDepartement;
-	private ArrayList<Etudiant> etudiants;
-	private ArrayList<Prof> prof;
-	private ArrayList<String> annee;
-		
-	public Departement(String nom, String chefDepartement, ArrayList<String> annee, ArrayList<Prof> prof, ArrayList<Etudiant> etudiants) {
-		this.nom = nom;
-		this.chefDepartement = chefDepartement;
-		this.annee = annee;
-		this.prof = prof;
-		this.etudiants = etudiants;
-	}
-	
-	public Departement(String nom) {
-		this.nom = nom;
-		this.chefDepartement = "John Doe";
-	}
-	
-	public Departement(String nom, String chefDepartement) {
-		this.nom = nom;
-		this.chefDepartement = chefDepartement;
-	}
-	
-	public String getNom() {
-		return nom;
-	}
-	
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	
-	public String getChefDepartement() {
-		return chefDepartement;
-	}
-	
-	public void setChefDepartement(String chefDepartement) {
-		this.chefDepartement = chefDepartement;
-	}
-	
-	public ArrayList<String> getAnnee() {
-		return annee;
-	}
-	
-	public void setAnnee(ArrayList<String> annee) {
-		this.annee = annee;
-	}
+    private String nom;
+    private String chefDepartement;
+    private ArrayList<Etudiant> etudiants;
+    private ArrayList<Prof> profs;
+    private ArrayList<String> annees;
 
-	public ArrayList<Prof> getProf() {
-		return prof;
-	}
-	
-	public void setProf(ArrayList<Prof> prof) {
-		this.prof = prof;
-	}
+    public Departement(String nom, String chefDepartement, ArrayList<String> annees, ArrayList<Prof> profs, ArrayList<Etudiant> etudiants) {
+        this.nom = nom;
+        this.chefDepartement = chefDepartement;
+        this.annees = (annees != null) ? annees : new ArrayList<>();
+        this.profs = (profs != null) ? profs : new ArrayList<>();
+        this.etudiants = (etudiants != null) ? etudiants : new ArrayList<>();
+    }
 
-	public ArrayList<Etudiant> getEtudiants() {
-		return etudiants;
-	}
-	
-	public void setEtudiants(ArrayList<Etudiant> etudiants) {
-		this.etudiants = etudiants;
-	}
-	
-	public void addAnnee(String annee) {
-		this.annee.add(annee);
-		System.out.println(annee+" add into the liste");
-	}
-	
-	public void deleteAnnee(String annee) {
-		for(int i = 0; i < this.annee.size(); i++) {
-			if ( this.annee.get(i).equals(annee) ) {
-				this.annee.remove(i);
-				System.out.println(annee+" was removed at "+i);
-			}
-		}
-	}
-	
-	public String toString() {
-		String str = "le departement de "+nom;
-		
-		String strChefDepartement = "";
-		if ( chefDepartement != null ) {
-			strChefDepartement = "\n\tqui est comme un chef de departement M."+chefDepartement;
-		}
+    public Departement(String nom) {
+        this.nom = nom;
+        this.chefDepartement = "John Doe";
+        this.annees = new ArrayList<>();
+        this.profs = new ArrayList<>();
+        this.etudiants = new ArrayList<>();
+    }
 
-		String strAnnee = "";
-		ArrayList<String> strListeAnnee = new ArrayList<String>();
-		if ( annee != null ) {
-			strListeAnnee.add(annee.get(0)+"");
-			for ( int i = 1; i < annee.size(); i++ ) {
-				strListeAnnee.add(annee.get(i)+"");
-			}
-			strAnnee = String.join(" ",strListeAnnee);
-			strAnnee = "\n\tles etudiant est dans l'un des annee suivante: "+strAnnee;
-		}
+    public Departement(String nom, String chefDepartement) {
+        this.nom = nom;
+        this.chefDepartement = chefDepartement;
+        this.annees = new ArrayList<>();
+        this.profs = new ArrayList<>();
+        this.etudiants = new ArrayList<>();
+    }
 
-		String strProf = "";
-		ArrayList<String> strListeProf = new ArrayList<String>();
-		if ( prof != null ) {
-			strListeProf.add(prof.get(0)+"");
-			for ( int i = 1; i < prof.size(); i++ ) {
-				strListeProf.add(prof.get(i)+"");
-			}
-			strProf = String.join(" ",strListeProf);
-			strProf = "\n\tpour les professeurs on trouve: "+strProf;
-		}
+    public String getNom() {
+        return nom;
+    }
 
-		String strEtudiants = "";
-		ArrayList<String> strListeEtudiants = new ArrayList<String>();
-		if ( etudiants != null ) {
-			strListeEtudiants.add(etudiants.get(0)+"");
-			for ( int i = 1; i < etudiants.size(); i++ ) {
-				strListeEtudiants.add(etudiants.get(i)+"");
-			}
-			strEtudiants = String.join(" ",strListeEtudiants);
-			strEtudiants = "\n\tpour les etudiants on trouve: "+strEtudiants;
-		}
-		
-		return str.concat(strChefDepartement.concat(strProf.concat(strEtudiants.concat(strAnnee))));
-	}
-	
-	public void collaborate(Departement autreDepartement) {
-		System.out.println(this.nom+" now is collaborating with "+autreDepartement.getNom());
-	}
-	
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getChefDepartement() {
+        return chefDepartement;
+    }
+
+    public void setChefDepartement(String chefDepartement) {
+        this.chefDepartement = chefDepartement;
+    }
+
+    public ArrayList<String> getAnnees() {
+        return annees;
+    }
+
+    public void setAnnees(ArrayList<String> annees) {
+        this.annees = annees;
+    }
+
+    public ArrayList<Prof> getProfs() {
+        return profs;
+    }
+
+    public void setProfs(ArrayList<Prof> profs) {
+        this.profs = profs;
+    }
+
+    public ArrayList<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    public void setEtudiants(ArrayList<Etudiant> etudiants) {
+        this.etudiants = etudiants;
+    }
+
+    public void addAnnee(String annee) {
+        if (this.annees == null) {
+            this.annees = new ArrayList<>();
+        }
+        this.annees.add(annee);
+        System.out.println(annee + " a été ajoutée à la liste des années.");
+    }
+    public void addEtudiant(Etudiant e) {
+
+    }
+    public void addProf(Prof p) { 
+    	
+    	
+    }
+
+
+    public void deleteAnnee(String annee) {
+        if (this.annees == null || this.annees.isEmpty()) {
+            System.out.println("Aucune année à supprimer.");
+            return;
+        }
+        boolean removed = this.annees.remove(annee);
+        if (removed) {
+            System.out.println(annee + " a été supprimée de la liste.");
+        } else {
+            System.out.println(annee + " n'existe pas dans la liste.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder("Le département de " + nom);
+
+        if (chefDepartement != null) {
+            str.append("\n\tle chef de département est M. ").append(chefDepartement);
+        }
+
+        if (annees != null && !annees.isEmpty()) {
+            String listeAnnees = String.join(", ", annees);
+            str.append("\n\tles étudiants sont dans l'une des années suivantes : ").append(listeAnnees);
+        }
+
+        if (profs != null && !profs.isEmpty()) {
+            ArrayList<String> strListeProf = new ArrayList<>();
+            for (Prof p : profs) {
+                strListeProf.add(p.getNom());
+            }
+            String listeProfs = String.join(", ", strListeProf);
+            str.append("\n\tles professeurs du département sont : ").append(listeProfs);
+        }
+
+        if (etudiants != null && !etudiants.isEmpty()) {
+            ArrayList<String> strListeEtudiants = new ArrayList<>();
+            for (Etudiant e : etudiants) {
+                strListeEtudiants.add(e.getNom());
+            }
+            String listeEtu = String.join(", ", strListeEtudiants);
+            str.append("\n\tles étudiants du département sont : ").append(listeEtu);
+        }
+
+        return str.toString();
+    }
+
+    public void collaborate(Departement autreDepartement) {
+        System.out.println(this.nom + " est maintenant en collaboration avec " + autreDepartement.getNom());
+    }
 }
